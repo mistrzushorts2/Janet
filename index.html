@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uniknij Mistrzowskich Przeszkód</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="author" content="Mistrzu-shorts">
+  <meta name="description" content="data powstania gry: 08.11.2025">
+  <meta name="keywords" content="gra,uniknij,mistrzowskich,przeszkód,mistrzu-shorts,shorts,mistrzu,shorts gry,gra online,gra przeglądarkowa,gra zręcznościowa,gra unikanie przeszkód,seo,google,ranking,top 10,local ranking,global ranking,changelog,aktualizacje,nowa wersja,nowa aktualizacja,2026">
+</head>
+<body>
+
+  <!-- w HTML tuż przed menu -->
+  <div id="menuBackground"></div>
+  
+  <!-- Osiągnięcia (lewa strona) - NA ZEWNĄTRZ MENU! -->
+  <div id="achievementsPanel" class="achievements-panel">
+    <h3>🏅 Osiągnięcia</h3>
+    <div id="achievementsList"></div>
+  </div>
+  
+  <!-- Koło fortuny (prawa strona) - NA ZEWNĄTRZ MENU! -->
+  <div id="wheelPanel" class="wheel-panel">
+    <h3>🎰 Koło Fortuny</h3>
+    <div class="wheel-container">
+      <canvas id="wheelCanvas" width="280" height="280"></canvas>
+      <button id="spinBtn" class="spin-btn">ZAKRĘĆ</button>
+      <div id="wheelCooldown" class="wheel-cooldown"></div>
+    </div>
+  </div>
+  
+  <div id="menu">
+    <!-- Przycisk sklepu (centrum top) -->
+    <button id="shopBtn" class="shop-btn">🛒 SKLEP</button>
+    
+     <div class="sigma">
+    <h4>Nowa aktualizacja w nowym 2026</h4>
+  </div>
+   
+   <div class="wersja">
+     <h3>Aktualizacja 25.12.2025 - Wersja 1.4<br>
+    OSIĄGNIĘCIA! KOŁO FORTUNY! NOWE SKINY! 🎰🏅
+    </h3>
+   </div>
+   
+   <div id="changelogTop" class="changelog-top" aria-live="polite"></div>
+   <h4>Autor, Twórca, I Modyfikator - Mistrzu shorts</h4>
+    <h1>Uniknij Mistrzowskich Przeszkód</h1>
+    <button id="startBtn">▶ START</button>
+    <button id="changelogBtn">Changelog</button>
+
+    <div id="rankingPanel" class="ranking-container">
+      <div id="localRanking" class="ranking-box">
+        <h2>🏆 Lokalny TOP 10</h2>
+        <table id="rankingTable">
+          <thead>
+            <tr><th>Nick</th><th>Punkty</th><th>Poziom</th><th>Czas</th></tr>
+          </thead>
+          <tbody id="rankingBody"></tbody>
+        </table>
+        <div id="resetSection">
+          <input type="password" id="resetPass" placeholder="Hasło...">
+          <button id="resetRankingBtn">Resetuj tabelę</button>
+        </div>
+      </div>
+
+      <div id="globalRanking" class="ranking-box">
+        <h2>🌐 Globalny TOP 10</h2>
+        <table id="globalRankingTable">
+          <thead>
+            <tr><th>Nick</th><th>Punkty</th><th>Poziom</th><th>Czas</th><th>Data</th></tr>
+          </thead>
+          <tbody id="globalRankingBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="gameCanvas"></canvas>
+
+  <div id="ui">
+    <div id="scoreInfo">
+      <span>Punkty: <span id="score">0</span></span>
+      <span>Poziom: <span id="level">1</span></span>
+    </div>
+    <div id="progressBar">
+      <div id="progressFill"></div>
+    </div>
+  </div>
+
+  <div id="controls">
+    <button id="left">←</button>
+    <button id="up">↑</button>
+    <button id="right">→</button>
+  </div>
+
+  <div id="gameOver">
+    <h2>Koniec gry!</h2>
+    <p>Twój wynik: <span id="finalScore">0</span> | Poziom: <span id="finalLevel">1</span> | Czas: <span id="finalTime">0</span>s</p>
+    <div id="nicknameInput">
+      <input type="text" id="nickname" placeholder="Twój nick (max 22)" maxlength="22">
+      <button id="saveScoreBtn">Zapisz wynik</button>
+    </div>
+    <button id="restartBtn">♿️Zagraj ponownie♿️</button>
+  </div>
+  
+  <!-- Top 10 notification -->
+  <div id="top10Notification" class="top10-notification">
+    🎉 GRATULACJE! TOP 10 GLOBALNIE! 🎉
+  </div>
+
+  <!-- Changelog modal -->
+  <div id="changelogModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h2>Changelog</h2>
+      <div id="changelogBody"></div>
+      <button id="closeChangelog">Zamknij</button>
+    </div>
+  </div>
+
+  <!-- Shop modal -->
+  <div id="shopModal" class="modal" style="display:none;">
+    <div class="shop-modal-content">
+      <button id="closeShopTop" class="shop-close-top">✕</button>
+      <h2>🛒 SKLEP SKINÓW</h2>
+      <div class="coins-display">
+        <span class="coin-icon">💰</span>
+        <span id="coinCount">0</span> monet
+      </div>
+      <div id="shopItems" class="shop-items"></div>
+      <button id="closeShop" class="close-shop-btn">Zamknij</button>
+    </div>
+  </div>
+
+  <!-- Ability buttons (bottom-right during game) -->
+  <button id="abilityBtn" class="ability-btn" style="display:none;">
+    <span class="ability-key-hint">ENTER</span>
+    <span class="ability-icon">💥</span>
+    <span class="ability-cooldown" id="abilityCooldown">15</span>
+  </button>
+  
+  <!-- Freeze ability button (skin #9) will be created dynamically -->
+
+  <script src="script.js"></script>
+  
+</body>
+</html>
